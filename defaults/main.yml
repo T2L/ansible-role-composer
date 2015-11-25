@@ -1,0 +1,6 @@
+---
+# Composer installation directory.
+composer_install_dir: /usr/local/bin
+
+# Composer executable filename.
+composer_filename: composer

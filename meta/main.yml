@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Roman Paska
+  description: Install Composer PHP Dependency Manager.
+  company: Lemberg Solutions
+  license: MIT
+  min_ansible_version: 1.0
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - development
+    - packaging
+    - web
+dependencies: []
