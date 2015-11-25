@@ -27,7 +27,7 @@ This role doesn't specify any dependencies, but PHP must be installed.
 
     - hosts: all
       roles:
-        - t2l.composer
+        - T2L.composer
 
 ## License
 
