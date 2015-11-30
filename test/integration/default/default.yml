@@ -1,0 +1,14 @@
+---
+
+- hosts: test-kitchen
+  roles:
+    # Composer requires PHP.
+    - geerlingguy.php
+    - ansible-role-composer
+  vars:
+    # Do not notify web server, because we do not have any.
+    php_enable_webserver: false
+    # Install Composer in a custom directory.
+    composer_install_dir: /usr/bin
+    # Use custom executable name.
+    composer_filename: php-composer
