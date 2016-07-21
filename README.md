@@ -1,7 +1,5 @@
 # Ansible Role: Composer
 
-[![Build Status](https://travis-ci.org/T2L/ansible-role-composer.svg?branch=master)](https://travis-ci.org/T2L/ansible-role-composer)
-
 Installs Composer, the PHP Dependency Manager.
 
 ## Requirements
@@ -31,21 +29,10 @@ This role doesn't specify any dependencies, but PHP must be installed.
       roles:
         - T2L.composer
 
-## Tests
-
-This role utilizes [Test kitchen](http://kitchen.ci/) test harness tool with [Serverspec](http://serverspec.org/) test framework.
-
-Test are being run on the following platforms:
-
-- CentOS 6.7
-- CentOS 7.1
-- Ubuntu 12.04
-- Ubuntu 14.04
-
 ## License
 
 MIT
 
 ## Author Information
 
-This role was created in 2015 by Roman Paska.
+This role was created in 2015-2016 by Roman Paska.
