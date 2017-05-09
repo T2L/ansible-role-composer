@@ -4,3 +4,12 @@ composer_install_dir: /usr/local/bin
 
 # Composer executable filename.
 composer_filename: composer
+
+# Composer version.
+composer_version: ""
+
+# Keep Composer up-to-date.
+composer_keep_updated: false
+
+# PHP executable name.
+composer_php_executable: php
