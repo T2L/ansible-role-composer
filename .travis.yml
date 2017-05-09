@@ -1,12 +1,13 @@
 dist: trusty
 sudo: required
+language: python
 
 cache:
   apt: true
 
 before_install:
   # Add Ansible PPA.
-  - sudo add-apt-repository ppa:ansible/ansible
+  - sudo add-apt-repository ppa:ansible/ansible -y
   # Update repositories.
   - sudo apt-get update -qq
 
