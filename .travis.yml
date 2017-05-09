@@ -1,0 +1,18 @@
+dist: trusty
+sudo: required
+
+cache:
+  apt: true
+
+before_install:
+  # Add Ansible PPA.
+  - add-apt-repository ppa:ansible/ansible
+  # Update repositories.
+  - sudo apt-get update -qq
+
+install:
+  # Install Ansible.
+  - sudo apt-get install ansible -y
+
+script:
+  - ansible-playbook -i 'localhost,' tasks/main.yml --connection=local --syntax-check
