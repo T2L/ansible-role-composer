@@ -6,7 +6,7 @@ cache:
 
 before_install:
   # Add Ansible PPA.
-  - add-apt-repository ppa:ansible/ansible
+  - sudo add-apt-repository ppa:ansible/ansible
   # Update repositories.
   - sudo apt-get update -qq
 
