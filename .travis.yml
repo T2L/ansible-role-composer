@@ -1,19 +1,21 @@
-dist: trusty
+---
 sudo: required
+
 language: python
 
-cache:
-  apt: true
+cache: pip
+
+services:
+  - docker
 
 before_install:
-  # Add Ansible PPA.
-  - sudo add-apt-repository ppa:ansible/ansible -y
-  # Update repositories.
-  - sudo apt-get update -qq
-
+  - sudo apt-get -qq update
+  - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
 install:
-  # Install Ansible.
-  - sudo apt-get install ansible -y
-
+  - pip install docker
+  - pip install molecule
 script:
-  - ansible-playbook -i 'localhost,' tasks/main.yml --connection=local --syntax-check
+  - molecule test
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -1,17 +1,19 @@
 ---
 - name: Check if Composer is installed.
-  stat: 
+  stat:
     path: "{{ composer_install_dir }}/{{ composer_filename }}"
   register: composer_binary
 
 - name: Check Composer version.
-  shell: >
+  command: >
     {{ composer_install_dir }}/{{ composer_filename }} --version
   register: composer_current_version
   when: composer_binary.stat.exists
-  
+  changed_when: false
+
 - name: Get Composer checksum.
-  regsiter: composer_checksum
+  set_fact:
+    composer_checksum: "{{ item }}"
   with_url:
     - https://composer.github.io/installer.sig
 
@@ -31,21 +33,21 @@
   when: not composer_binary.stat.exists
 
 - name: Remove the installer.
-  file: 
+  file:
     path: /tmp/composer-setup.php
     state: absent
   when: not composer_binary.stat.exists
-  
+
 - name: Update Composer to the selected version (if configured).
-  shell: >
-    {{ composer_php_executable }} {{ composer_path }} self-update {{ composer_version }}
+  command: >
+    {{ composer_php_executable }} {{ composer_install_dir }} self-update {{ composer_version }}
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
   when: composer_binary.stat.exists and composer_version != '' and composer_current_version != composer_version
 
 - name: Update Composer to the latest version (if configured).
-  shell: >
-    {{ composer_php_executable }} {{ composer_path }} self-update
+  command: >
+    {{ composer_php_executable }} {{ composer_install_dir }} self-update
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
   when: composer_binary.stat.exists and composer_version == '' and composer_keep_updated

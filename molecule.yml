@@ -1,0 +1,18 @@
+---
+dependency:
+  name: galaxy
+  requirements_file: tests/requirements.yml
+ansible:
+  playbook: tests/test.yml
+driver:
+  name: docker
+docker:
+  containers:
+    - name: ansible-role-composer-ubuntu-14.04
+      image: ubuntu
+      image_version: '14.04'
+      privileged: true
+    - name: ansible-role-composer-ubuntu-16.04
+      image: ubuntu
+      image_version: '16.04'
+      privileged: true
