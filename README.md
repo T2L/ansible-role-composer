@@ -1,5 +1,7 @@
 # Ansible Role: Composer
 
+[![Build Status](https://travis-ci.org/T2L/ansible-role-composer.svg?branch=2.x.x)](https://travis-ci.org/T2L/ansible-role-composer)
+
 Installs Composer, the PHP Dependency Manager.
 
 ## Requirements
