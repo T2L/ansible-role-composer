@@ -26,8 +26,11 @@
   when: not composer_binary.stat.exists
 
 - name: Run the installer.
-  command: >
-    {{ composer_php_executable }} composer-setup.php --install-dir={{ composer_install_dir }} --filename={{ composer_filename }} {% if composer_version != '' %} --version={{ composer_version }}{% endif %}
+  command: >-
+    {{ composer_php_executable }} composer-setup.php
+      --install-dir={{ composer_install_dir }}
+      --filename={{ composer_filename }}
+      {% if composer_version %} --version={{ composer_version }}{% endif %}
   args:
     chdir: /tmp
   when: not composer_binary.stat.exists
@@ -43,11 +46,11 @@
     {{ composer_php_executable }} {{ composer_install_dir }} self-update {{ composer_version }}
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
-  when: composer_binary.stat.exists and composer_version != '' and composer_current_version != composer_version
+  when: composer_binary.stat.exists and composer_version and composer_current_version != composer_version
 
 - name: Update Composer to the latest version (if configured).
   command: >
     {{ composer_php_executable }} {{ composer_install_dir }} self-update
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
-  when: composer_binary.stat.exists and composer_version == '' and composer_keep_updated
+  when: composer_binary.stat.exists and composer_version and composer_keep_updated

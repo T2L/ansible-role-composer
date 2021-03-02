@@ -1,6 +1,7 @@
 ---
 galaxy_info:
-  author: Roman Paska
+  role_name: composer
+  author: t2l
   description: Install Composer PHP Dependency Manager.
   company: Lemberg Solutions
   license: MIT

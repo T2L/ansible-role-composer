@@ -1,2 +1,5 @@
 # Ignore Molecule directory.
 /.molecule
+
+# Ignore Molecule cache.
+/.cache
