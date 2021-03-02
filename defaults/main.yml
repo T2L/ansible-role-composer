@@ -6,7 +6,7 @@ composer_install_dir: /usr/local/bin
 composer_filename: composer
 
 # Composer version.
-composer_version: ""
+composer_version:
 
 # Keep Composer up-to-date.
 composer_keep_updated: false

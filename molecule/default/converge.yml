@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+
+  pre_tasks:
+
+    - name: Ensure Ansible temp directory exists
+      file:
+        path: /tmp/ansible
+        state: directory
+        mode: 0777
+
+    - name: Update apt cache
+      apt:
+        update_cache: true
+
+  roles:
+    - t2l.php
+    - t2l.composer
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    composer_install_dir: /usr/bin
+    composer_filename: php_composer
+    composer_keep_updated: false
+    php_restart_web_server: false
