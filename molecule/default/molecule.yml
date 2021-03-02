@@ -1,6 +1,9 @@
 ---
 dependency:
   name: galaxy
+  options:
+    roles-path: ~/.ansible/roles
+    role-file: molecule/requirements.yml
 driver:
   name: docker
 lint: |
