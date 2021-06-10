@@ -48,4 +48,4 @@ MIT
 
 ## Author Information
 
-This role was created in 2015-2017 by Roman Paska.
+This role was created in 2015-2021 by Roman Paska.

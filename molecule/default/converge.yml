@@ -10,10 +10,6 @@
         state: directory
         mode: 0777
 
-    - name: Update apt cache
-      apt:
-        update_cache: true
-
   roles:
     - t2l.php
     - t2l.composer
