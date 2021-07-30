@@ -14,7 +14,9 @@ on:
 
 jobs:
   molecule:
-    name: Ubuntu ${{ matrix.ubuntu-version }} / Ansible ${{ matrix.ansible-version }} / PHP ${{ matrix.php-version }} / COMPOSER_VERSION ${{ matrix.composer-version }}
+    name: >-
+      Ubuntu ${{ matrix.ubuntu-version }} / Ansible ${{ matrix.ansible-version }} /
+      PHP ${{ matrix.php-version }} / Composer ${{ matrix.composer-version }}
 
     runs-on: ubuntu-latest
 
