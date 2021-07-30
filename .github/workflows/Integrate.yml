@@ -1,0 +1,64 @@
+---
+name: Integrate
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+  push:
+    branches:
+      - 2.x.x
+    tags:
+  # Run every night at 05:15.
+  schedule:
+    - cron: '15 5 * * *'
+
+jobs:
+  molecule:
+    name: >-
+      Ubuntu ${{ matrix.ubuntu-version }} / Ansible ${{ matrix.ansible-version }} /
+      PHP ${{ matrix.php-version }} / Composer ${{ matrix.composer-version }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ubuntu-version: 18.04
+            ansible-version: 2.10.7
+            php-version: '5.6'
+            composer-version: 1.10.22
+          - ubuntu-version: 20.04
+            ansible-version: 3.4.0
+            php-version: '7.4'
+            composer-version: 1.10.22
+          - ubuntu-version: 20.04
+            ansible-version: 4.3.0
+            php-version: '8.0'
+            composer-version: 2.1.5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Cache PiP dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/Library/Caches/pip
+          key: python-3.9
+          restore-keys: python-3.9-
+
+      - name: Install Molecule and it's dependencies
+        run: pip install ansible==${{ matrix.ansible-version }} ansible-lint yamllint docker molecule molecule-docker
+
+      - name: Run Molecule tests
+        run: molecule test
+        env:
+          MOLECULE_PLATFORM: ubuntu:${{ matrix.ubuntu-version }}
+          PHP_VERSION: ${{ matrix.php-version }}
+          COMPOSER_VERSION: ${{ matrix.composer-version }}
