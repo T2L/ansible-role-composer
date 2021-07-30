@@ -23,8 +23,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version:
-          - '3.9'
         include:
           - ubuntu-version: 18.04
             ansible-version: 2.10.7
@@ -46,14 +44,14 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.9'
 
       - name: Cache PiP dependencies
         uses: actions/cache@v2
         with:
           path: ~/Library/Caches/pip
-          key: python-${{ matrix.python-version }}
-          restore-keys: python-${{ matrix.python-version }}-
+          key: python-3.9
+          restore-keys: python-3.9-
 
       - name: Install Molecule and it's dependencies
         run: pip install ansible==${{ matrix.ansible-version }} ansible-lint yamllint docker molecule molecule-docker
