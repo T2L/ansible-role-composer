@@ -5,8 +5,9 @@
   register: composer_binary
 
 - name: Check Composer version.
-  command: >
-    {{ composer_install_dir }}/{{ composer_filename }} --version
+  shell: |
+    set -o pipefail
+    {{ composer_install_dir }}/{{ composer_filename }} --version --no-interaction | grep -e '\d\+\.\d\+\.\d\+' -o
   register: composer_current_version
   when: composer_binary.stat.exists
   changed_when: false
