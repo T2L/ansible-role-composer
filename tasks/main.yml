@@ -7,7 +7,7 @@
 - name: Check Composer version.
   shell: |
     set -o pipefail
-    {{ composer_install_dir }}/{{ composer_filename }} --version --no-interaction | grep -e '\d\+\.\d\+\.\d\+' -o
+    {{ composer_install_dir }}/{{ composer_filename }} --version --no-interaction | grep -oe '[0-9]\+\.[0-9]\+\.[0-9\+]'
   args:
     executable: /bin/bash
   register: composer_current_version
